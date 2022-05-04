@@ -3,14 +3,22 @@ import React, { useEffect, useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import Table from "./components/Table";
+import LeafletMap from "./components/LeafletMap";
 
-interface Webcams {
+export interface Webcams {
+  map(arg0: (webcam: Webcams) => JSX.Element): React.ReactNode;
   Camera: string;
   location: string;
-  latitude: string;
-  longitude: string;
+  Latitude: string;
+  Longitude: string;
   id: number;
+  webcamData: Webcams[];
+  cameras3: Webcams;
+  cameras5: Webcams;
+  cameras35: Webcams;
+  camerasOther: Webcams;
 }
+
 function App() {
   const [webcamData, setWebcamData] = useState<Webcams[]>();
   const [cameras3, setCameras3] = useState<Webcams[]>();
@@ -55,132 +63,22 @@ function App() {
     fetch("http://localhost:3002")
       .then((response) => response.json())
       .then((data) => createTableColumns(data));
-  }, [webcamData]);
+  }, []);
 
   if (!webcamData) {
     return <div className="App">Webcams are loading</div>;
   } else {
     return (
       <div className="App">
-        <table id="cameraTableContainer">
-          <tbody>
-            <tr>
-              <td>
-                <table id="column3">
-                  <thead>
-                    <tr>
-                      <th>Cameras 3</th>
-                    </tr>
-                    <tr>
-                      <th>Number</th>
-                      <th>Name</th>
-                      <th>Latitude</th>
-                      <th>Longitude</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {cameras3 &&
-                      cameras3.map((webcam) => {
-                        return (
-                          <tr>
-                            <td>{webcam.Camera}</td>
-                            <td>{webcam.location}</td>
-                            <td>{webcam.latitude}</td>
-                            <td>{webcam.longitude}</td>
-                          </tr>
-                        );
-                      })}
-                  </tbody>
-                  ;
-                </table>
-              </td>
-              <td>
-                <table id="column5">
-                  <thead>
-                    <tr>
-                      <th>Cameras 5</th>
-                    </tr>
-                    <tr>
-                      <th>Number</th>
-                      <th>Name</th>
-                      <th>Latitude</th>
-                      <th>Longitude</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {cameras5 &&
-                      cameras5.map((webcam) => {
-                        return (
-                          <tr>
-                            <td>{webcam.Camera}</td>
-                            <td>{webcam.location}</td>
-                            <td>{webcam.latitude}</td>
-                            <td>{webcam.longitude}</td>
-                          </tr>
-                        );
-                      })}
-                  </tbody>
-                </table>
-              </td>
-              <td>
-                <table id="column15">
-                  <thead>
-                    <tr>
-                      <th>Cameras 3 &amp; 5</th>
-                    </tr>
-                    <tr>
-                      <th>Number</th>
-                      <th>Name</th>
-                      <th>Latitude</th>
-                      <th>Longitude</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {cameras35 &&
-                      cameras35.map((webcam) => {
-                        return (
-                          <tr>
-                            <td>{webcam.Camera}</td>
-                            <td>{webcam.location}</td>
-                            <td>{webcam.latitude}</td>
-                            <td>{webcam.longitude}</td>
-                          </tr>
-                        );
-                      })}
-                  </tbody>
-                </table>
-              </td>
-              <td>
-                <table id="columnOther">
-                  <thead>
-                    <tr>
-                      <th>Cameras Overig</th>
-                    </tr>
-                    <tr>
-                      <th>Number</th>
-                      <th>Name</th>
-                      <th>Latitude</th>
-                      <th>Longitude</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {camerasOther &&
-                      camerasOther.map((webcam) => {
-                        return (
-                          <tr>
-                            <td>{webcam.Camera}</td>
-                            <td>{webcam.location}</td>
-                            <td>{webcam.latitude}</td>
-                            <td>{webcam.longitude}</td>
-                          </tr>
-                        );
-                      })}
-                  </tbody>
-                </table>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <LeafletMap webcamData={webcamData} />
+        {
+          <Table
+            cameras3={cameras3}
+            cameras5={cameras5}
+            cameras35={cameras35}
+            camerasOther={camerasOther}
+          />
+        }
       </div>
     );
   }

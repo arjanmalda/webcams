@@ -90,3 +90,23 @@ h1 {
 #cameraTableContainer table tr:last-child td {
   height: 100%;
 }
+
+.map-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.map-wrapper .search-input {
+  margin: 10px;
+  height: 1rem;
+}
+
+.search-input-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.no-results-message {
+  color: red;
+}
