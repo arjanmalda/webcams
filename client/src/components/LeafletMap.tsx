@@ -8,8 +8,9 @@ const defaultLatLng: LatLngTuple = [52.09061, 5.12143];
 const zoom: number = 11;
 
 const LeafletMap: any = ({ webcamData }: any) => {
-  const [pinLocations, setPinLocations] = useState<any>([{}]);
+  const [pinLocations, setPinLocations] = useState<any>([1, 1]);
   const [searchTerm, setSearchTerm] = useState("");
+  console.log(pinLocations[0].Latitude, pinLocations[0].Longitude);
   const handleSearch = () => {
     let searchResult = [];
     for (let i = 0; i < webcamData.length; i++) {
@@ -19,13 +20,15 @@ const LeafletMap: any = ({ webcamData }: any) => {
           .toLowerCase()
           .trim()
           .includes(searchTerm.toLowerCase().trim())
-      )
-        searchResult.push({ Latitude: 52.09061, Longitude: 5.12143 });
+      ) {
+        searchResult.push(webcamData[i]);
+      }
     }
     if (searchResult.length < 1) {
-      searchResult.push(webcamData[0]);
+      setPinLocations("No search results");
+    } else {
+      setPinLocations(searchResult);
     }
-    setPinLocations(searchResult);
   };
 
   return (
@@ -44,10 +47,10 @@ const LeafletMap: any = ({ webcamData }: any) => {
               setSearchTerm(event.target.value);
             }}
           />
-          {pinLocations[0].Camera == undefined ? (
-            <div className="no-results-message"></div>
-          ) : (
+          {pinLocations === "No search results" ? (
             <div className="no-results-message">No search results</div>
+          ) : (
+            <div className="no-results-message"></div>
           )}
           <button onClick={handleSearch}>Search</button>
         </>
@@ -57,31 +60,24 @@ const LeafletMap: any = ({ webcamData }: any) => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         />
-        {pinLocations[0].Latitude != undefined ? (
+        {pinLocations[0].Latitude &&
           pinLocations.map(
             (webcam: {
-              id: number;
               Camera: string;
               location: string;
               Latitude: number;
               Longitude: number;
             }) => {
               return (
-                <Marker
-                  key={webcam.id}
-                  position={[webcam.Latitude, webcam.Longitude]}
-                >
+                <Marker position={[webcam.Latitude, webcam.Longitude]}>
                   <Popup>
-                    Name: {webcam.Camera}
-                    <br></br>Location: {webcam.location}
+                    Naam: {webcam.Camera}
+                    <br></br>Locatie: {webcam.location}
                   </Popup>
                 </Marker>
               );
             }
-          )
-        ) : (
-          <div></div>
-        )}
+          )}
       </MapContainer>
     </div>
   );
