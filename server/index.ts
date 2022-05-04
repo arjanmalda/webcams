@@ -39,7 +39,10 @@ csv()
           searchResult.push(webcams[i]);
       }
       searchResult.length > 0
-        ? console.log("Search result: ", searchResult)
+        ? console.log(
+            "Search result: ",
+            searchResult.map((webcam) => `${webcam.location} | `)
+          )
         : console.log("No results");
       app.get("/", (req, res) => {
         res.send(webcams);
@@ -53,26 +56,16 @@ const app = express();
 const port = 3002;
 
 app.use(function (req, res, next) {
-  // Website you wish to allow to connect
   res.setHeader("Access-Control-Allow-Origin", "http://localhost:3001");
-
-  // Request methods you wish to allow
   res.setHeader(
     "Access-Control-Allow-Methods",
     "GET, POST, OPTIONS, PUT, PATCH, DELETE"
   );
-
-  // Request headers you wish to allow
   res.setHeader(
     "Access-Control-Allow-Headers",
     "X-Requested-With,content-type"
   );
-
-  // Set to true if you need the website to include cookies in the requests sent
-  // to the API (e.g. in case you use sessions)
   res.setHeader("Access-Control-Allow-Credentials", "true");
-
-  // Pass to next layer of middleware
   next();
 });
 
