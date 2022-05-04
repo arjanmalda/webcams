@@ -8,7 +8,7 @@ const defaultLatLng: LatLngTuple = [52.09061, 5.12143];
 const zoom: number = 11;
 
 const LeafletMap: any = ({ webcamData }: any) => {
-  const [pinLocations, setPinLocations] = useState<any>([1, 1]);
+  const [pinLocations, setPinLocations] = useState<any>([{}]);
   const [searchTerm, setSearchTerm] = useState("");
   const handleSearch = () => {
     let searchResult = [];
@@ -20,7 +20,10 @@ const LeafletMap: any = ({ webcamData }: any) => {
           .trim()
           .includes(searchTerm.toLowerCase().trim())
       )
-        searchResult.push(webcamData[i]);
+        searchResult.push({ Latitude: 52.09061, Longitude: 5.12143 });
+    }
+    if (searchResult.length < 1) {
+      searchResult.push(webcamData[0]);
     }
     setPinLocations(searchResult);
   };
@@ -41,7 +44,7 @@ const LeafletMap: any = ({ webcamData }: any) => {
               setSearchTerm(event.target.value);
             }}
           />
-          {pinLocations.length > 0 ? (
+          {pinLocations[0].Camera == undefined ? (
             <div className="no-results-message"></div>
           ) : (
             <div className="no-results-message">No search results</div>
@@ -69,8 +72,8 @@ const LeafletMap: any = ({ webcamData }: any) => {
                   position={[webcam.Latitude, webcam.Longitude]}
                 >
                   <Popup>
-                    Naam: {webcam.Camera}
-                    <br></br>Locatie: {webcam.location}
+                    Name: {webcam.Camera}
+                    <br></br>Location: {webcam.location}
                   </Popup>
                 </Marker>
               );
