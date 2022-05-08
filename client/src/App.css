@@ -8,6 +8,21 @@ body {
   padding: 0;
   font-family: "Roboto", sans-serif;
   font-size: 0.8em;
+  background-image: linear-gradient(
+    to right top,
+    #b7e0d9,
+    #afd8d8,
+    #a9cfd6,
+    #a6c5d3,
+    #a5bccd,
+    #a1b7c8,
+    #9db2c2,
+    #99adbd,
+    #91abb8,
+    #8aa9b1,
+    #84a6a9,
+    #81a3a1
+  );
 }
 
 a {
