@@ -1,4 +1,3 @@
-import React from "react";
 import { Webcams } from "../App";
 
 // I have no idea why the type <React.FC<Webcams> is not accepted here
@@ -9,15 +8,19 @@ const Table: any = ({
   camerasOther,
 }: Webcams) => {
   return (
-    <table id="cameraTableContainer">
+    <table className="table mt-5">
       <tbody>
         <tr>
           <td>
-            <table id="column3">
+            <table className="table">
               <thead>
                 <tr>
-                  <th>Cameras 3</th>
+                  <th className="table-header h3" colSpan={4}>
+                    Cameras 3
+                  </th>
                 </tr>
+              </thead>
+              <thead>
                 <tr>
                   <th>Number</th>
                   <th>Name</th>
@@ -38,15 +41,18 @@ const Table: any = ({
                     );
                   })}
               </tbody>
-              ;
             </table>
           </td>
           <td>
-            <table id="column5">
+            <table className="table">
               <thead>
                 <tr>
-                  <th>Cameras 5</th>
+                  <th className="table-header h3" colSpan={4}>
+                    Cameras 5
+                  </th>
                 </tr>
+              </thead>
+              <thead>
                 <tr>
                   <th>Number</th>
                   <th>Name</th>
@@ -70,11 +76,15 @@ const Table: any = ({
             </table>
           </td>
           <td>
-            <table id="column15">
+            <table className="table">
               <thead>
                 <tr>
-                  <th>Cameras 3 &amp; 5</th>
+                  <th className="table-header h3" colSpan={4}>
+                    Cameras 3 &amp; 5
+                  </th>
                 </tr>
+              </thead>
+              <thead>
                 <tr>
                   <th>Number</th>
                   <th>Name</th>
@@ -98,11 +108,15 @@ const Table: any = ({
             </table>
           </td>
           <td>
-            <table id="columnOther">
+            <table className="table">
               <thead>
                 <tr>
-                  <th>Cameras Overig</th>
+                  <th className="table-header h3" colSpan={4}>
+                    Cameras Overig
+                  </th>
                 </tr>
+              </thead>
+              <thead>
                 <tr>
                   <th>Number</th>
                   <th>Name</th>

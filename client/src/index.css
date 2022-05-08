@@ -16,3 +16,26 @@ code {
   height: 50vh;
   width: 50vw;
 }
+
+/* width */
+::-webkit-scrollbar {
+  height: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px rgb(46, 45, 45);
+  border-radius: 10px;
+  border: solid 1px rgb(54, 54, 54);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(54, 48, 65);
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(54, 48, 65);
+}

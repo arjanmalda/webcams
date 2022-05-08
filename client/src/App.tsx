@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-import logo from "./logo.svg";
 import "./App.css";
 import Table from "./components/Table";
 import LeafletMap from "./components/LeafletMap";
@@ -60,7 +60,7 @@ function App() {
   };
 
   useEffect(() => {
-    fetch("http://localhost:3002")
+    fetch("http://localhost:3001/api/webcams")
       .then((response) => response.json())
       .then((data) => createTableColumns(data));
   }, []);

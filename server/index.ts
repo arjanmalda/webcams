@@ -44,7 +44,7 @@ csv()
             searchResult.map((webcam) => `${webcam.location} | `)
           )
         : console.log("No results");
-      app.get("/", (req, res) => {
+      app.get("/api/webcams", (req, res) => {
         res.send(webcams);
       });
 
@@ -53,14 +53,11 @@ csv()
   });
 
 const app = express();
-const port = 3002;
+const port = 3001;
 
 app.use(function (req, res, next) {
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3001");
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET, POST, OPTIONS, PUT, PATCH, DELETE"
-  );
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+  res.setHeader("Access-Control-Allow-Methods", "GET");
   res.setHeader(
     "Access-Control-Allow-Headers",
     "X-Requested-With,content-type"
@@ -69,7 +66,7 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.get("/", (req, res) => {
+app.get("/api/webcams", (req, res) => {
   res.send(webcams);
 });
 

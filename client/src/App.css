@@ -31,13 +31,6 @@ table td {
   vertical-align: top;
 }
 
-table thead tr:nth-child(1) th {
-  height: 75px;
-  background-color: #272727;
-  color: #7f7f7c;
-  font-size: 3em;
-}
-
 table tr:nth-child(2) th {
   text-align: left;
   height: 25px;
@@ -65,7 +58,7 @@ h1 {
 }
 
 #cameraTableContainer table {
-  width: 450px;
+  width: 200px;
   margin: auto;
   height: 100%;
   border-collapse: collapse;
@@ -95,16 +88,13 @@ h1 {
   display: flex;
   flex-direction: row;
   gap: 10px;
-}
-
-.map-wrapper .search-input {
   margin: 10px;
-  height: 1rem;
 }
 
 .search-input-wrapper {
   display: flex;
   flex-direction: column;
+  width: 50vw;
 }
 
 .no-results-message {

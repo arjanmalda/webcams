@@ -1,8 +1,8 @@
-import { MapContainer, TileLayer, useMap, Marker, Popup } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import React, { useState } from "react";
-import { Webcams } from "../App";
 
 import { LatLngTuple } from "leaflet";
+import { Alert, Button, Form } from "react-bootstrap";
 
 const defaultLatLng: LatLngTuple = [52.09061, 5.12143];
 const zoom: number = 11;
@@ -34,26 +34,30 @@ const LeafletMap: any = ({ webcamData }: any) => {
   return (
     <div className="map-wrapper">
       <div className="search-input-wrapper">
-        <>
-          <h2>
-            Copy and paste the name of webcam to display it on the map<br></br>
-            or just start typing and click search
-          </h2>
-
-          <input
-            className="search-input"
+        <h2 className="h1 m-4 display-5">
+          Copy and paste the name of a webcam to display it on the map
+          <br></br>
+          or just start typing and click search
+        </h2>
+        <Form onSubmit={handleSearch}>
+          <Form.Control
+            className="m-1"
             type="text"
             onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
               setSearchTerm(event.target.value);
             }}
           />
           {pinLocations === "No search results" ? (
-            <div className="no-results-message">No search results</div>
+            <Alert className="no-results-message" variant="warning m-3">
+              No search results
+            </Alert>
           ) : (
             <div className="no-results-message"></div>
           )}
-          <button onClick={handleSearch}>Search</button>
-        </>
+          <Button type="submit" className="m-1">
+            Search
+          </Button>
+        </Form>
       </div>
       <MapContainer id="mapId" center={defaultLatLng} zoom={zoom}>
         <TileLayer
