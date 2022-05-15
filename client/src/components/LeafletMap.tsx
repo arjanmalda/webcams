@@ -10,8 +10,9 @@ const zoom: number = 11;
 const LeafletMap: any = ({ webcamData }: any) => {
   const [pinLocations, setPinLocations] = useState<any>([1, 1]);
   const [searchTerm, setSearchTerm] = useState("");
-  console.log(pinLocations[0].Latitude, pinLocations[0].Longitude);
-  const handleSearch = () => {
+
+  const handleSearch = (event: { preventDefault: () => void }) => {
+    event.preventDefault();
     let searchResult = [];
     for (let i = 0; i < webcamData.length; i++) {
       webcamData[i].id = i;

@@ -15,7 +15,11 @@ const Table: any = ({
             <table className="table">
               <thead>
                 <tr>
-                  <th className="table-header h3" colSpan={4}>
+                  <th
+                    className="table-header h3"
+                    role="contentinfo"
+                    colSpan={4}
+                  >
                     Cameras 3
                   </th>
                 </tr>
@@ -33,7 +37,7 @@ const Table: any = ({
                   cameras3.map((webcam) => {
                     return (
                       <tr key={webcam.id}>
-                        <td>{webcam.Camera}</td>
+                        <td role="cameras3-code">{webcam.Camera}</td>
                         <td>{webcam.location}</td>
                         <td>{webcam.Latitude}</td>
                         <td>{webcam.Longitude}</td>
@@ -112,7 +116,7 @@ const Table: any = ({
               <thead>
                 <tr>
                   <th className="table-header h3" colSpan={4}>
-                    Cameras Overig
+                    Cameras Other
                   </th>
                 </tr>
               </thead>
