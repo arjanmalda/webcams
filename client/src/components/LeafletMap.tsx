@@ -34,32 +34,10 @@ const LeafletMap: any = ({ webcamData }: any) => {
 
   return (
     <div className="map-wrapper">
-      <div className="search-input-wrapper">
-        <h2 className="h1 m-4 display-5">
-          Copy and paste the name of a webcam to display it on the map
-          <br></br>
-          or just start typing and click search
-        </h2>
-        <Form onSubmit={handleSearch}>
-          <Form.Control
-            className="m-1"
-            type="text"
-            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-              setSearchTerm(event.target.value);
-            }}
-          />
-          {pinLocations === "No search results" ? (
-            <Alert className="no-results-message" variant="warning m-3">
-              No search results
-            </Alert>
-          ) : (
-            <div className="no-results-message"></div>
-          )}
-          <Button type="submit" className="m-1">
-            Search
-          </Button>
-        </Form>
-      </div>
+      <h1 className="page-title">
+        Copy and paste the name of a webcam to display it on the map or just
+        start typing and click search
+      </h1>
       <MapContainer id="mapId" center={defaultLatLng} zoom={zoom}>
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -84,6 +62,28 @@ const LeafletMap: any = ({ webcamData }: any) => {
             }
           )}
       </MapContainer>
+      <div className="search-input-wrapper">
+        <Form onSubmit={handleSearch} className="search-container">
+          <Form.Control
+            className="m-1"
+            type="text"
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+              setSearchTerm(event.target.value);
+            }}
+            required
+          />
+          {pinLocations === "No search results" ? (
+            <Alert className="no-results-message" variant="warning m-3">
+              No search results
+            </Alert>
+          ) : (
+            <div className="no-results-message"></div>
+          )}
+          <Button type="submit" className="m-1">
+            Search
+          </Button>
+        </Form>
+      </div>
     </div>
   );
 };

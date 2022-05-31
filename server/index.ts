@@ -7,7 +7,7 @@ interface Webcams {
   location: string;
   latitude: string;
   longitude: string;
-  id: number | undefined;
+  id: number;
 }
 
 // Import csv data and parse csv data to object

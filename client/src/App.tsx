@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import "./App.css";
-import Table from "./components/Table";
+import "./App.style.scss";
+import Table from "./components/Table/Table";
 import LeafletMap from "./components/LeafletMap";
 
 export interface Webcams {
