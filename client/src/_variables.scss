@@ -1,0 +1,29 @@
+$test-variable: 50vw;
+
+$background-light: linear-gradient(
+  to right top,
+  #b7e0d9,
+  #afd8d8,
+  #a9cfd6,
+  #a6c5d3,
+  #a5bccd,
+  #a1b7c8,
+  #9db2c2,
+  #99adbd,
+  #91abb8,
+  #8aa9b1,
+  #84a6a9,
+  #81a3a1
+);
+
+$background-dark: linear-gradient(to right top, #0a0a0a, #0c3d3d);
+
+$font-weights: (
+  "regular": 400,
+  "medium": 500,
+  "bold": 700,
+);
+
+$breakpoint-mobile: 750px;
+$breakpoint-test: 800px;
+$breakpoint-tablet: 990px;

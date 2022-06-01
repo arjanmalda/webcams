@@ -1,0 +1,17 @@
+#mapId {
+  height: 50vh;
+  width: 90vw;
+  border-radius: 10px;
+}
+
+.leaflet-container {
+  width: 100vw;
+}
+
+.search-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  padding-top: 20px;
+}

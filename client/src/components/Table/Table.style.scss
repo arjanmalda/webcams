@@ -1,3 +1,5 @@
+@import "C:/Users/arjan/Documents/Programmeren/webcams/client/src/variables";
+
 .webcam-container {
   width: 100vw;
   display: flex;
@@ -14,4 +16,18 @@
   display: flex;
   flex-direction: row;
   gap: 50px;
+}
+
+@media (max-width: $breakpoint-tablet) {
+  .webcam-container-one,
+  .webcam-container-two {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+  }
+}
+
+.table {
+  color: inherit;
 }

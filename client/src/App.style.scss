@@ -1,3 +1,46 @@
+@import "./resets";
+@import "./variables";
+
+@function weight($weight-name) {
+  @return map-get($font-weights, $weight-name);
+}
+
+@mixin flex-center($direction, $height) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: $direction;
+  height: $height;
+}
+
+@mixin theme($light-theme: true) {
+  @if $light-theme {
+    background-image: $background-light;
+    color: black;
+  } @else {
+    background-image: $background-dark;
+    color: white;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: $breakpoint-tablet) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media (max-width: $breakpoint-mobile) {
+    @content;
+  }
+}
+
+.dark-theme-toggle {
+  border: 10px transparent solid;
+  position: sticky;
+  top: 0;
+}
+
 .App {
   text-align: center;
 }
@@ -8,24 +51,17 @@ body {
   padding: 0;
   font-family: "Roboto", sans-serif;
   font-size: 0.8em;
-  background-image: linear-gradient(
-    to right top,
-    #b7e0d9,
-    #afd8d8,
-    #a9cfd6,
-    #a6c5d3,
-    #a5bccd,
-    #a1b7c8,
-    #9db2c2,
-    #99adbd,
-    #91abb8,
-    #8aa9b1,
-    #84a6a9,
-    #81a3a1
-  );
-
-  overflow-x: hidden;
+  background-image: $background-light;
 }
+
+.main-wrapper-light {
+  @include theme($light-theme: true);
+}
+
+.main-wrapper-dark {
+  @include theme($light-theme: false);
+}
+
 .map-wrapper {
   width: 95vw;
   display: flex;
@@ -33,6 +69,7 @@ body {
   align-items: center;
   gap: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 .search-input-wrapper {
@@ -45,23 +82,6 @@ body {
   color: red;
 }
 
-#mapId {
-  height: 50vh;
-  width: 90vw;
-}
-
-.leaflet-container {
-  width: 100vw;
-}
-
-.search-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100vw;
-  padding-top: 20px;
-}
-
 .page-title {
   text-align: center;
   font-weight: bold;
@@ -70,15 +90,6 @@ body {
 
 .m-1 {
   width: 250px;
-}
-
-table {
-  height: fit-content;
-  width: 50%;
-}
-
-$breakpoint-tablet: 768px;
-@media (min-width: $breakpoint-tablet) {
 }
 
 // scroll

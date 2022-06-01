@@ -1,3 +1,9 @@
+@import "C:/Users/arjan/Documents/Programmeren/webcams/client/src/variables";
+
+.table-header-title {
+  text-align: center;
+}
+
 .table-header-column-names {
   display: flex;
   flex-direction: row;
@@ -51,4 +57,22 @@
 .webcam-row-longitude-value {
   width: 15%;
   text-align: right;
+}
+
+@media (max-width: $breakpoint-mobile) {
+  .webcam-container-one,
+  .webcam-container-two {
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+  }
+
+  .webcam-row-name-title {
+    width: 43%;
+  }
+
+  .webcam-row-name-value {
+    width: 40%;
+  }
 }

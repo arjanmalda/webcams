@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.style.scss";
 import Table from "./components/Table/Table";
 import LeafletMap from "./components/LeafletMap";
+import { Form } from "react-bootstrap";
 
 export interface Webcams {
   map(arg0: (webcam: Webcams) => JSX.Element): React.ReactNode;
@@ -25,6 +26,7 @@ function App() {
   const [cameras5, setCameras5] = useState<Webcams[]>();
   const [cameras35, setCameras35] = useState<Webcams[]>();
   const [camerasOther, setCamerasOther] = useState<Webcams[]>();
+  const [darkTheme, setDarkTheme] = useState(false);
 
   const createTableColumns = (webcams: Webcams[]) => {
     let row1 = [];
@@ -60,16 +62,33 @@ function App() {
   };
 
   useEffect(() => {
-    fetch("http://localhost:3001/api/webcams")
+    fetch("http://192.168.1.66:3001/api/webcams")
       .then((response) => response.json())
       .then((data) => createTableColumns(data));
   }, []);
+
+  const handleThemeChange = () => {
+    setDarkTheme(!darkTheme);
+  };
 
   if (!webcamData) {
     return <div className="App">Webcams are loading</div>;
   } else {
     return (
-      <div className="App">
+      <div className={`main-wrapper-${darkTheme ? "dark" : "light"}`}>
+        <div className="dark-theme-toggle">
+          <Form>
+            <Form.Check
+              type="switch"
+              id="custom-switch"
+              label={`${
+                darkTheme ? "Disable dark theme" : "Enable dark theme"
+              }`}
+              onChange={handleThemeChange}
+            />
+          </Form>
+        </div>
+
         <LeafletMap webcamData={webcamData} />
         {
           <Table

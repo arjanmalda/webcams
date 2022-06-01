@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import { LatLngTuple } from "leaflet";
 import { Alert, Button, Form } from "react-bootstrap";
 
+import "./LeafletMap.style.scss";
+
 const defaultLatLng: LatLngTuple = [52.09061, 5.12143];
 const zoom: number = 11;
 
@@ -34,10 +36,7 @@ const LeafletMap: any = ({ webcamData }: any) => {
 
   return (
     <div className="map-wrapper">
-      <h1 className="page-title">
-        Copy and paste the name of a webcam to display it on the map or just
-        start typing and click search
-      </h1>
+      <h1 className="page-title">Search webcams</h1>
       <MapContainer id="mapId" center={defaultLatLng} zoom={zoom}>
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
